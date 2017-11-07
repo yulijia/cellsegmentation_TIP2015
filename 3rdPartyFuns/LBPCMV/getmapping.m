@@ -56,7 +56,7 @@ if strcmp(mappingtype,'ri') %Rotation invariant
     rm = i;
     r  = i;
     for j = 1:samples-1
-      r = bitset(bitshift(r,1,samples),1,bitget(r,samples)); %rotate
+      r = bitset(bitshift(r,1,'uint8'),1,bitget(r,samples)); %rotate
                                                              %left
       if r < rm
         rm = r;
@@ -73,7 +73,7 @@ end
 if strcmp(mappingtype,'riu2') %Uniform & Rotation invariant
   newMax = samples + 2;
   for i = 0:2^samples - 1
-    j = bitset(bitshift(i,1,samples),1,bitget(i,samples)); %rotate left
+    j = bitset(bitshift(i,1,'uint8'),1,bitget(i,samples)); %rotate left
     numt = sum(bitget(bitxor(i,j),1:samples));
     if numt <= 2
       table(i+1) = sum(bitget(i,1:samples));
